@@ -14,8 +14,7 @@ import sideImage from '../../assets/images/sider_2019_12-09.png';
 import sideImage2 from '../../assets/images/sider_2019_02-04.png';
 import sideImage3 from '../../assets/images/sider_2019_02-04-2.png';
 
-export class HomePage extends React.Component {
-    render() {
+function HomePage() {
         return (
         <>
               <Header />
@@ -59,4 +58,5 @@ export class HomePage extends React.Component {
       </>
  );
 }
-}
+
+export default HomePage;
