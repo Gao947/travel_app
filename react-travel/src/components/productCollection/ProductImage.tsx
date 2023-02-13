@@ -1,5 +1,6 @@
 import React from "react";
 import { Image, Typography } from "antd";
+import { useNavigate, useLocation, useParams, useMatch } from "react-router-dom";
 
 interface PropsType {
     id: string | number;
@@ -10,8 +11,13 @@ interface PropsType {
 }
 
 export const ProductImage: React.FC<PropsType> = ({id, size, imageSrc, price, title }) => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const params = useParams();
+ // const match = useMatch();  路径匹配数据
+
     return (
-    <>
+    <div onClick={() => navigate(`detail/${id}`)}>
        {size=="large" ? (
         <Image src={imageSrc} height={285} width={490} />
        ) : (
@@ -25,6 +31,6 @@ export const ProductImage: React.FC<PropsType> = ({id, size, imageSrc, price, ti
             {title.slice(0, 20)}
         </Typography.Text>
        </div>
-    </>
+    </div>
     );
 }
