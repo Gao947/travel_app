@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, Typography } from "antd";
-import { useNavigate, useLocation, useParams, useMatch } from "react-router-dom";
+import { useNavigate, useLocation, useParams, useMatch, Link } from "react-router-dom";
 
 interface PropsType {
     id: string | number;
@@ -17,7 +17,7 @@ export const ProductImage: React.FC<PropsType> = ({id, size, imageSrc, price, ti
  // const match = useMatch();  路径匹配数据
 
     return (
-    <div onClick={() => navigate(`detail/${id}`)}>
+    <Link to={`detail/${id}`}>
        {size=="large" ? (
         <Image src={imageSrc} height={285} width={490} />
        ) : (
@@ -31,6 +31,6 @@ export const ProductImage: React.FC<PropsType> = ({id, size, imageSrc, price, ti
             {title.slice(0, 20)}
         </Typography.Text>
        </div>
-    </div>
+    </Link>
     );
 }
