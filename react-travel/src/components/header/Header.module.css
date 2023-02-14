@@ -19,7 +19,7 @@
   }
   
   .button-group {
-    float: right;
+    float: right !important;
     margin-top: 5px;
   }
   
