@@ -45,8 +45,6 @@ export const Header: React.FC = () => {
         <div className={styles.inner}>
         <Space wrap>
           <Typography.Text>{t("header.slogan")}</Typography.Text>
-          
-          
           <Dropdown.Button
             style={{ marginLeft: 15 }}
             overlay={
@@ -63,6 +61,7 @@ export const Header: React.FC = () => {
           >
             {language === "zh" ? "中文" : "English"}
           </Dropdown.Button>
+          </Space>
           <Button.Group className={styles["button-group"]}>
             <Button onClick={() => navigate("/register")}>
               {t("header.register")}
@@ -71,7 +70,6 @@ export const Header: React.FC = () => {
               {t("header.signin")}
             </Button>
           </Button.Group>
-          </Space>
         </div>
       </div>
       <Layout.Header className={styles["main-header"]}>
