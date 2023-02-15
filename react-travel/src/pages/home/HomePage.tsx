@@ -16,6 +16,7 @@ import sideImage3 from '../../assets/images/sider_2019_02-04-2.png';
 import { useTranslation } from "react-i18next";
 
 function HomePage() {
+  
   const { t } = useTranslation();
         return (
         <>

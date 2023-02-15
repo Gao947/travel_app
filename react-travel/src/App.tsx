@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from "./App.module.css";
 import { Route, Routes } from "react-router-dom";
-import HomePage from './pages/home/HomePage';
 import SignInPage from './pages/signIn/SignInPage';
 import RegisterPage from './pages/register/RegisterPage';
 import DetailPage from './pages/detail/DetailPage';
+import { HomePage } from './pages';
 
 function App() {
   return (
