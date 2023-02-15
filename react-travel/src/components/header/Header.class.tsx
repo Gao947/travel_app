@@ -20,7 +20,7 @@ import { Dispatch } from "react";
 const mapStateToProps = (state: RootState) => {
   return {
     language: state.language,
-    languageList: state.languageList
+    languageList: state.language.languageList
   }
 }
 
