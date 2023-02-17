@@ -4,7 +4,8 @@ import { Route, Routes } from "react-router-dom";
 import SignInPage from './pages/signIn/SignInPage';
 import RegisterPage from './pages/register/RegisterPage';
 import DetailPage from './pages/detail/DetailPage';
-import { HomePage, SearchPage } from './pages';
+import { HomePage } from './pages';
+import { SearchPage } from './pages';
 
 
 function App() {

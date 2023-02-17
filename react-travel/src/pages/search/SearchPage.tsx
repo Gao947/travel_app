@@ -7,11 +7,11 @@ import { searchProduct } from "../../redux/productSearch/slice";
 import { useSelector } from "../../redux/hooks";
 import { useDispatch } from "react-redux";
 
-interface MatchParams {
-  keywords: string;
-}
+// interface MatchParams {
+//   keywords: string;
+// }
  
-export const SearchPage: React.FC = () => {
+export function SearchPage() {
   const { keywords } = useParams();
   
   const loading = useSelector((state) => state.productSearch.loading);
@@ -69,3 +69,5 @@ export const SearchPage: React.FC = () => {
     </>
   );
 };
+
+export default SearchPage;
