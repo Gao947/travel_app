@@ -5,32 +5,28 @@ import { Spin, Row, Col, DatePicker, Space, Divider, Typography, Anchor, Menu } 
 import styles from "./DetailPage.module.css";
 import { Header, Footer, ProductIntro, ProductComments } from "../../components";
 import { commentMockData } from "./mockup";
+import { productDetailSlice, getProductDetail } from "../../redux/productDetail/slice";
+import { useSelector } from "../../redux/hooks";
+import { useDispatch } from "react-redux";
 
 const { RangePicker } = DatePicker;
 
 function DetailPage() {
     const params = useParams();
     const { touristRouteId } = useParams();
-    const [loading, setLoading] = useState<boolean>(true);
-    const [product, setProduct] = useState<any>(null);
-    const [error, setError] = useState<string | null>(null);
+    // const [loading, setLoading] = useState<boolean>(true);
+    // const [product, setProduct] = useState<any>(null);
+    // const [error, setError] = useState<string | null>(null);
+    
+    const loading = useSelector(state => state.productDetail.loading)
+    const error = useSelector(state => state.productDetail.error)
+    const product = useSelector(state => state.productDetail.data)
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true)
-            try {
-                const { data } = await axios.get(
-                    `http://123.56.149.216:8080/api/touristRoutes/${touristRouteId}`
-                );
-                setProduct(data)
-                setLoading(false)
-            } catch (error: any) {
-                setError(error.message)
-                setLoading(false)
-            }
-        }
-        fetchData();
-    }, [])
+        dispatch(getProductDetail(touristRouteId))
+      }, []);
     if (loading) {
         return (
             <Spin
