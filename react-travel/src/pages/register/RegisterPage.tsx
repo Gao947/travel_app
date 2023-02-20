@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import { UserLayout } from "../../layouts/userLayout";
 // export const RegisterPage : React.FC = () => {
 //     return <h1>注册页面</h1>
 // }
@@ -11,7 +11,9 @@ function RegisterPage() {
         nativate('/')
     }
     return (
+        <UserLayout>
         <h1>注册页面</h1>
+        </UserLayout>
     )
 }
 

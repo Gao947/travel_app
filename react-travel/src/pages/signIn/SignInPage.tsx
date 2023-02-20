@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { UserLayout } from "../../layouts/userLayout";
 
 // export const SignInPage : React.FC = () => {
 
@@ -14,9 +15,9 @@ function SignInPage() {
         nativate('/')
     }
     return (
-        <>
+        <UserLayout>
             <h1>登录页面</h1>
-        </>
+        </UserLayout>
     );
 }
 
