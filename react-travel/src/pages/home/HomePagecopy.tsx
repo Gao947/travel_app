@@ -19,6 +19,7 @@ import { RootState } from "../../redux/store";
 import {
   giveMeDataActionCreator
 } from "../../redux/recommendProducts/recommendProductsActions";
+import { MainLayout } from "../../layouts/mainLayout";
 
 const mapStateToProps = (state: RootState) => {
   return {
@@ -66,10 +67,7 @@ class HomePageComponent extends React.Component<PropsType> {
       return <div>网站出错：{error}</div>;
     }
     return (
-      <>
-        <Header />
-        {/* 页面内容 content */}
-        <div className={styles["page-content"]}>
+    <MainLayout>
           <Row style={{ marginTop: 20 }}>
             <Col span={6}>
               <SideMenu />
@@ -106,9 +104,7 @@ class HomePageComponent extends React.Component<PropsType> {
             products={productList[2].touristRoutes}
           />
           <BusinessPartner />
-        </div>
-        <Footer />
-      </>
+    </MainLayout>
     );
   }
 }

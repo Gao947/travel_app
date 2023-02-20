@@ -8,6 +8,7 @@ import { commentMockData } from "./mockup";
 import { productDetailSlice, getProductDetail } from "../../redux/productDetail/slice";
 import { useSelector } from "../../redux/hooks";
 import { useDispatch } from "react-redux";
+import { MainLayout } from "../../layouts/mainLayout";
 
 const { RangePicker } = DatePicker;
 
@@ -44,9 +45,8 @@ function DetailPage() {
     if (error) {
         return <div>网站出错：{error}</div>;
     }
-    return <>
-        <Header />
-        <div className={styles["page-content"]}>
+    return (
+        <MainLayout>
             {/* 产品简介 与 日期选择 */}
             <div className={styles["page-intro-container"]}>
                 <Row>
@@ -121,9 +121,8 @@ function DetailPage() {
                     <ProductComments data={commentMockData}/>
                 </div>
             </div>
-        </div>
-        <Footer />
-    </>
-}
+            </MainLayout>
+    );
+};
 
 export default DetailPage;
