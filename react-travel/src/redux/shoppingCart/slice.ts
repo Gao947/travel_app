@@ -47,6 +47,22 @@ export const addShoppingCartItem: any = createAsyncThunk(
     }
 );
 
+export const checkout: any = createAsyncThunk(
+    "shoppingCart/checkout",
+    async (jwt: string, thunkAPI) => {
+        const { data } = await axios.post(
+            `http://123.56.149.216:8080/api/shoppingCart/checkout`,
+            null,
+            {
+                headers : {
+                    Authorization: `bearer ${jwt}`
+                }
+            }
+        );
+        return data;
+    }
+);
+
 export const clearShoppingCartItem: any = createAsyncThunk(
     "shoppingCart/clearShoppingCartItem",
     async (paramaters: { jwt: string, itemIds: number[] }, thunkAPI) => {
@@ -108,5 +124,19 @@ export const shoppingCartSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
         },
-    }
-})
+        [checkout.pending.type]: (state) => {
+            //   return { ...state, loading: true }; //在函数中通过展开操作符利用state旧数据创建全新state对象，并且更新loading值
+            state.loading = true;
+        },
+        [checkout.fulfilled.type]: (state, action) => {
+            state.items= [];
+            state.error = null;
+            state.loading = false;
+        },
+        [checkout.rejected.type]: (state, action: PayloadAction<string | null>) => {
+            // const ddd = action.payload;
+            state.loading = false;
+            state.error = action.payload;
+    },
+},
+});

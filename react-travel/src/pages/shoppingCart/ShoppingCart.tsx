@@ -5,8 +5,8 @@ import { Row, Col, Affix } from "antd";
 import { ProductList, PaymentCard } from "../../components";
 import { useSelector } from "../../redux/hooks";
 import { useDispatch } from "react-redux";
-import { clearShoppingCartItem } from "../../redux/shoppingCart/slice";
-import { clear } from "console";
+import { clearShoppingCartItem, checkout } from "../../redux/shoppingCart/slice";
+import { useNavigate } from "react-router-dom";
 
 export function ShoppingCartPage(props) {
 
@@ -14,6 +14,7 @@ export function ShoppingCartPage(props) {
     const shoppingCartItems = useSelector(s => s.shoppingCart.items)
     const jwt = useSelector(s => s.user.token) as string
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     return (
         <MainLayout>
@@ -41,7 +42,11 @@ export function ShoppingCartPage(props) {
                   )
                   .reduce((a, b) => a + b, 0)}
                     onCheckout={() => {
-
+                      if(shoppingCartItems.length <= 0) {
+                        return
+                      }
+                      dispatch(checkout(jwt))
+                      navigate("/placeOrder")
                     }}
                     onShoppingCartClear={() => {
                         dispatch(
