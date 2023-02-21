@@ -8,6 +8,9 @@ import { HomePage, ShoppingCartPage } from './pages';
 import { SearchPage } from './pages';
 import  { Navigate } from "react-router-dom";
 import { useSelector } from './redux/hooks';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getShoppingCart } from './redux/shoppingCart/slice';
 
 const PrivateRoute = ({ children }) => {
   const jwt = useSelector((s) => s.user.token);
@@ -16,6 +19,13 @@ const PrivateRoute = ({ children }) => {
 
 function App() {
   const jwt = useSelector((s) => s.user.token);
+  const dispatch = useDispatch();
+useEffect(()=>{
+  if(jwt) {
+    dispatch(getShoppingCart(jwt));
+  }
+}, [jwt]);
+
   return (
     <div className={styles.App}>
         <Routes>
