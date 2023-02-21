@@ -11,6 +11,7 @@ import { useSelector } from './redux/hooks';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getShoppingCart } from './redux/shoppingCart/slice';
+import { PlaceOrderPage } from './pages';
 
 const PrivateRoute = ({ children }) => {
   const jwt = useSelector((s) => s.user.token);
@@ -41,6 +42,13 @@ useEffect(()=>{
           element={
           <PrivateRoute>
             <ShoppingCartPage />
+          </PrivateRoute>
+          } />
+          <Route 
+          path="/placeOrder" 
+          element={
+          <PrivateRoute>
+            <PlaceOrderPage />
           </PrivateRoute>
           } />
         </Routes>
