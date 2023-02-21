@@ -4,11 +4,18 @@ import { Route, Routes } from "react-router-dom";
 import SignInPage from './pages/signIn/SignInPage';
 import RegisterPage from './pages/register/RegisterPage';
 import DetailPage from './pages/detail/DetailPage';
-import { HomePage } from './pages';
+import { HomePage, ShoppingCartPage } from './pages';
 import { SearchPage } from './pages';
+import  { Navigate } from "react-router-dom";
+import { useSelector } from './redux/hooks';
 
+const PrivateRoute = ({ children }) => {
+  const jwt = useSelector((s) => s.user.token);
+  return jwt ? children : <Navigate to="/signIn" />;
+};
 
 function App() {
+  const jwt = useSelector((s) => s.user.token);
   return (
     <div className={styles.App}>
         <Routes>
@@ -18,6 +25,14 @@ function App() {
           <Route path="/detail/:touristRouteId" element={ <DetailPage />} />
           <Route path="/search/:keywords?" element={<SearchPage />} />
           <Route path="*" element={ <h1> 404 not found !</h1>} />
+          <Route 
+          //isAuthenticated={jwt!== null}
+          path="/shoppingCart" 
+          element={
+          <PrivateRoute>
+            <ShoppingCartPage />
+          </PrivateRoute>
+          } />
         </Routes>
     </div>
   );
